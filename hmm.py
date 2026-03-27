@@ -37,7 +37,7 @@ class HMM:
     def Viterbi(self, O_t):
         T = O_t.shape[0]
         delta = np.zeros((T, self.N))
-        psi = np.zeros((T, self.N), dtype=int)
+        # psi = np.zeros((T, self.N), dtype=int)
         b = self.Gaussian_log_prob(O_t)
         for j in range(self.N):
             delta[0, j] = np.log(self.pi[j]) + b[0, j]
@@ -52,5 +52,5 @@ class HMM:
                         max_val = val
                         max_idx = i
                 delta[t, j] = max_val + b[t, j]
-                psi[t, j] = max_idx
+                # psi[t, j] = max_idx
         return np.max(delta[T-1, :])
